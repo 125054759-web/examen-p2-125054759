@@ -1,0 +1,1 @@
+Cargados 240 registros desde /data/output/resultado/part-00000 (lineas saltadas: 0). Filas en la tabla: 240

@@ -1,0 +1,7 @@
+Grupos: 240 | Lineas malformadas: 0 | Tiempo: 13.29 s
+
+real	0m13.325s
+user	0m5.671s
+sys	0m0.916s
+Lineas Hadoop: 240 | Lineas secuencial: 240
+OK: los resultados COINCIDEN exactamente.

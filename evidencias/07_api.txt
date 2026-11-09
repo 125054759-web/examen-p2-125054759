@@ -1,0 +1,23 @@
+--- GET /resultados/18   [hora 18, todas las categorias]
+[{"id":182,"hora":18,"categoria":"Abarrotes","ingreso_total":167463074.26},{"id":183,"hora":18,"categoria":"Bebidas","ingreso_total":168810720.83},{"id":184,"hora":18,"categoria":"Deportes","ingreso_total":168596108.59},{"id":185,"hora":18,"categoria":"Electronica","ingreso_total":167287213.62},{"id":186,"hora":18,"categoria":"Farmacia","ingreso_total":171576998.53},{"id":187,"hora":18,"categoria":"Hogar","ingreso_total":169614034.63},{"id":188,"hora":18,"categoria":"Juguetes","ingreso_total":171274028.84},{"id":189,"hora":18,"categoria":"Mascotas","ingreso_total":168644279.99},{"id":190,"hora":18,"categoria":"Papeleria","ingreso_total":170245583.65},{"id":191,"hora":18,"categoria":"Ropa","ingreso_total":171243505.19}]
+
+
+--- GET /resultados/Ropa   [categoria Ropa, todas las horas]
+[{"id":11,"hora":0,"categoria":"Ropa","ingreso_total":168049675.9},{"id":21,"hora":1,"categoria":"Ropa","ingreso_total":170980723.08},{"id":31,"hora":2,"categoria":"Ropa","ingreso_total":169730969.24},{"id":41,"hora":3,"categoria":"Ropa","ingreso_total":172056871.24},{"id":51,"hora":4,"categoria":"Ropa","ingreso_total":169008858.14},{"id":61,"hora":5,"categoria":"Ropa","ingreso_total":169406496.0},{"id":71,"hora":6,"categoria":"Ropa","ingreso_total":169083762.95},{"id":81,"hora":7,"categoria":"Ropa","ingreso_total":170918607.37},{"id":91,"hora":8,"categoria":"Ropa","ingreso_total":172793857.34},{"id":101,"hora":9,"categoria":"Ropa","ingreso_total":168077695.65},{"id":111,"hora":10,"categoria":"Ropa","ingreso_total":166948102.42},{"id":121,"hora":11,"categoria":"Ropa","ingreso_total":171184542.32},{"id":131,"hora":12,"categoria":"Ropa","ingreso_total":170269128.84},{"id":141,"hora":13,"categoria":"Ropa","ingreso_total":168559387.64},{"id":151,"hora":14,"categoria":"Ropa","ingreso_total":170813637.83},{"id":161,"hora":15,"categoria":"Ropa","ingreso_total":169895993.11},{"id":171,"hora":16,"categoria":"Ropa","ingreso_total":169225580.49},{"id":181,"hora":17,"categoria":"Ropa","ingreso_total":169766711.34},{"id":191,"hora":18,"categoria":"Ropa","ingreso_total":171243505.19},{"id":201,"hora":19,"categoria":"Ropa","ingreso_total":170340954.57},{"id":211,"hora":20,"categoria":"Ropa","ingreso_total":169116796.25},{"id":221,"hora":21,"categoria":"Ropa","ingreso_total":169920134.59},{"id":231,"hora":22,"categoria":"Ropa","ingreso_total":167024318.88},{"id":241,"hora":23,"categoria":"Ropa","ingreso_total":170486228.17}]
+
+
+--- GET /resultados/8/Abarrotes
+{"id":82,"hora":8,"categoria":"Abarrotes","ingreso_total":173884805.58}
+
+
+--- POST /resultados   [crear]
+{"id":242,"hora":3,"categoria":"Prueba","ingreso_total":100.5}
+
+
+--- PUT /resultados/3/Prueba   [actualizar]
+{"id":242,"hora":3,"categoria":"Prueba","ingreso_total":200.0}
+
+
+--- DELETE /resultados/3/Prueba   [borrar]
+{"borrado":{"id":242,"hora":3,"categoria":"Prueba","ingreso_total":200.0}}
+

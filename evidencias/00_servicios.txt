@@ -1,0 +1,4 @@
+NAME                           IMAGE                        COMMAND                  SERVICE   CREATED          STATUS                 PORTS
+examen-p2-125054759-api-1      examen-p2-125054759-api      "gunicorn --preload …"   api       10 seconds ago   Up 7 seconds           0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp
+examen-p2-125054759-db-1       postgres:16                  "docker-entrypoint.s…"   db        5 hours ago      Up 5 hours (healthy)   5432/tcp
+examen-p2-125054759-hadoop-1   examen-p2-125054759-hadoop   "/entrypoint.sh"         hadoop    10 seconds ago   Up 8 seconds           22/tcp

@@ -1,0 +1,39 @@
+--- docker compose down
+ Container examen-p2-125054759-api-1 Stopping 
+ Container examen-p2-125054759-api-1 Stopped 
+ Container examen-p2-125054759-api-1 Removing 
+ Container examen-p2-125054759-api-1 Removed 
+ Container examen-p2-125054759-db-1 Stopping 
+ Container examen-p2-125054759-hadoop-1 Stopping 
+ Container examen-p2-125054759-hadoop-1 Stopped 
+ Container examen-p2-125054759-hadoop-1 Removing 
+ Container examen-p2-125054759-hadoop-1 Removed 
+ Container examen-p2-125054759-db-1 Stopped 
+ Container examen-p2-125054759-db-1 Removing 
+ Container examen-p2-125054759-db-1 Removed 
+ Network examen-p2-125054759_red_datamart Removing 
+ Network examen-p2-125054759_red_datamart Removed 
+
+--- docker compose up -d
+ Network examen-p2-125054759_red_datamart Creating 
+ Network examen-p2-125054759_red_datamart Creating 
+ Network examen-p2-125054759_red_datamart Created 
+ Network examen-p2-125054759_red_datamart Created 
+ Container examen-p2-125054759-hadoop-1 Creating 
+ Container examen-p2-125054759-db-1 Creating 
+ Container examen-p2-125054759-hadoop-1 Created 
+ Container examen-p2-125054759-db-1 Created 
+ Container examen-p2-125054759-api-1 Creating 
+ Container examen-p2-125054759-api-1 Created 
+ Container examen-p2-125054759-db-1 Starting 
+ Container examen-p2-125054759-hadoop-1 Starting 
+ Container examen-p2-125054759-db-1 Started 
+ Container examen-p2-125054759-hadoop-1 Started 
+ Container examen-p2-125054759-db-1 Waiting 
+ Container examen-p2-125054759-db-1 Healthy 
+ Container examen-p2-125054759-api-1 Starting 
+ Container examen-p2-125054759-api-1 Started 
+
+--- GET /resultados/18 despues de reiniciar [los datos siguen ahi]
+[{"id":182,"hora":18,"categoria":"Abarrotes","ingreso_total":167463074.26},{"id":183,"hora":18,"categoria":"Bebidas","ingreso_total":168810720.83},{"id":184,"hora":18,"categoria":"Deportes","ingreso_total":168596108.59},{"id":185,"hora":18,"categoria":"Electronica","ingreso_total":167287213.62},{"id":186,"hora":18,"categoria":"Farmacia","ingreso_total":171576998.53},{"id":187,"hora":18,"categoria":"Hogar","ingreso_total":169614034.63},{"id":188,"hora":18,"categoria":"Juguetes","ingreso_total":171274028.84},{"id":189,"hora":18,"categoria":"Mascotas","ingreso_total":168644279.99},{"id":190,"hora":18,"categoria":"Papeleria","ingreso_total":170245583.65},{"id":191,"hora":18,"categoria":"Ropa","ingreso_total":171243505.19}]
+
