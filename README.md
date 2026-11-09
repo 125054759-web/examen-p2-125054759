@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| **Alumno** | _(tu nombre)_ |
+| **Alumno** | Betel Zurisadai Hernández Sánchez |
 | **Matrícula** | 125054759 |
 | **Último dígito** | 9 |
 | **Pregunta de negocio** | **Ingreso total (`cantidad × precio_unitario`) por hora del día (0–23) y categoría** |
@@ -159,16 +159,19 @@ curl http://localhost:8000/resultados/18     # los datos siguen ahí
 
 ## Evidencias
 
-_(Pega aquí tus capturas o guarda los logs en `evidencias/`)_
+Las salidas completas de cada paso están guardadas como logs en la carpeta [`evidencias/`](evidencias/):
 
-- [ ] `hadoop version` → `evidencias/01_hadoop_version.png`
-- [ ] `ssh localhost` sin contraseña → `evidencias/02_ssh_localhost.png`
-- [ ] `ssh hadoop@hadoop` desde api → `evidencias/03_ssh_api_hadoop.png`
-- [ ] Salida del job + tiempo → `evidencias/04_job_mapreduce.png`
-- [ ] Secuencial + tiempo + comparación OK → `evidencias/05_secuencial.png`
-- [ ] Carga a la BD → `evidencias/06_carga.png`
-- [ ] Respuesta de la API → `evidencias/07_api.png`
-- [ ] Datos tras `down` / `up` → `evidencias/08_persistencia.png`
+| # | Evidencia | Archivo | Resultado |
+|---|---|---|---|
+| 0 | Servicios levantados (`docker compose ps`) | [00_servicios.txt](evidencias/00_servicios.txt) | ✅ `hadoop`, `db` (healthy) y `api` en el puerto 8000 |
+| 1 | `hadoop version` | [01_hadoop_version.txt](evidencias/01_hadoop_version.txt) | ✅ Hadoop 3.3.6 |
+| 2 | `ssh localhost` sin contraseña | [02_ssh_localhost.txt](evidencias/02_ssh_localhost.txt) | ✅ "Conectado por SSH a: hadoop como hadoop" |
+| 3 | `ssh hadoop@hadoop` desde `api` | [03_ssh_api_a_hadoop.txt](evidencias/03_ssh_api_a_hadoop.txt) | ✅ "Conectado desde api a: hadoop como hadoop" |
+| 4 | Job MapReduce + tiempo | [04_job_mapreduce.txt](evidencias/04_job_mapreduce.txt) | ✅ 5,000,001 registros de entrada, 11 splits, 240 de salida |
+| 5 | Secuencial + tiempo + comparación | [05_secuencial_y_comparacion.txt](evidencias/05_secuencial_y_comparacion.txt) | ✅ "los resultados COINCIDEN exactamente" |
+| 6 | Carga a PostgreSQL | [06_carga_bd.txt](evidencias/06_carga_bd.txt) | ✅ 240 registros cargados |
+| 7 | API: GET, filtros, POST, PUT, DELETE | [07_api.txt](evidencias/07_api.txt) | ✅ CRUD completo |
+| 8 | Persistencia tras `down` / `up` | [08_persistencia.txt](evidencias/08_persistencia.txt) | ✅ los datos siguen en la BD |
 
 ### Resultado de referencia
 
@@ -188,13 +191,14 @@ Valores que deben salir con la matrícula 125054759 (sirven para comprobar que e
 
 | Método | Tiempo (`real`) | Resultado |
 |---|---|---|
-| Hadoop Streaming (standalone) | _(anota tu tiempo)_ | 240 líneas |
-| Script secuencial en Python | _(anota tu tiempo)_ | 240 líneas |
+| Hadoop Streaming (standalone) | **24.26 s** | 240 líneas |
+| Script secuencial en Python | **13.33 s** | 240 líneas |
 | ¿Coinciden? | | ✅ `comparar.py` → "COINCIDEN exactamente" |
 
-**¿Por qué uno fue más rápido?** El script secuencial fue más rápido porque, en modo
+**¿Por qué uno fue más rápido?** El script secuencial fue más rápido (13.3 s contra 24.3 s, casi
+la mitad del tiempo) porque, en modo
 standalone, Hadoop no reparte el trabajo entre varias máquinas: corre todo en una sola JVM
-sobre un solo equipo, procesando los splits de uno en uno, y además paga costos que el
+sobre un solo equipo, procesando los 11 splits de uno en uno, y además paga costos que el
 script simple no tiene. Tiene que arrancar la JVM y el *LocalJobRunner*, partir el archivo
 en *splits*, lanzar un proceso Python por tarea y pasarle cada línea por tuberías
 (*streaming*). Después escribe a disco y ordena (*shuffle & sort*) millones de pares
