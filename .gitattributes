@@ -1,0 +1,5 @@
+# Evita que Windows convierta los scripts a CRLF (rompe bash dentro de Linux)
+*.sh  text eol=lf
+*.py  text eol=lf
+Dockerfile text eol=lf
+*.yml text eol=lf

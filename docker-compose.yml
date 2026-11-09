@@ -1,0 +1,59 @@
+# Pipeline DataMart — matricula 125054759
+# Levantar todo:  docker compose up --build
+name: examen-p2-125054759
+
+services:
+
+  # 1) Hadoop standalone + SSH (construido con nuestro Dockerfile)
+  hadoop:
+    build: ./hadoop
+    hostname: hadoop
+    volumes:
+      - ./data:/data/input:ro              # dataset, SOLO LECTURA
+      - ./salida:/data/output              # aqui escribe el job (part-00000)
+      - ./mapreduce:/mapreduce             # mapper.py, reducer.py, secuencial.py
+      - ssh_compartido:/ssh-compartido     # llave para que api entre por SSH
+    networks:
+      - red_datamart
+
+  # 2) Base de datos PostgreSQL con volumen nombrado (persistencia)
+  db:
+    image: postgres:16
+    env_file: .env                         # POSTGRES_USER / PASSWORD / DB
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    networks:
+      - red_datamart
+
+  # 3) API CRUD en Flask; se conecta a "db" por nombre de servicio
+  api:
+    build: ./api
+    env_file: .env
+    environment:
+      POSTGRES_HOST: db
+    ports:
+      - "${API_PUERTO:-8000}:8000"         # puerto del host : puerto del contenedor
+    depends_on:
+      db:
+        condition: service_healthy         # espera a que PostgreSQL acepte conexiones
+      hadoop:
+        condition: service_started
+    volumes:
+      - ./salida:/data/output:ro           # para leer part-00000 al cargar
+      - ./scripts:/scripts:ro              # cargar_resultados.py
+      - ssh_compartido:/ssh-compartido:ro
+    networks:
+      - red_datamart
+
+networks:
+  red_datamart:
+    driver: bridge
+
+volumes:
+  pgdata:
+  ssh_compartido:

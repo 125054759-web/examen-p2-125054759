@@ -1,0 +1,15 @@
+# Datos: el CSV NO se sube al repositorio
+*.csv
+data/*
+!data/.gitkeep
+
+# Salida del job
+salida/*
+!salida/.gitkeep
+
+# Credenciales
+.env
+
+# Python
+__pycache__/
+*.pyc
